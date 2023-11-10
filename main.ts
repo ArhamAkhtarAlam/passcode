@@ -11,7 +11,7 @@ input.onButtonPressed(Button.A, function () {
 function wait_and_clear () {
     basic.pause(500)
     basic.clearScreen()
-    serial.writeNumber(user_key)
+    datalogger.log(datalogger.createCV("1", user_key))
 }
 input.onPinPressed(TouchPin.P2, function () {
     user_key += 10
@@ -35,14 +35,19 @@ input.onLogoEvent(TouchButtonEvent.Pressed, function () {
     wait_and_clear()
 })
 let user_key = 0
+datalogger.mirrorToSerial(true)
+radio.setGroup(1)
 user_key = 0
 let key = 12345
 let num = 1236
+datalogger.log(datalogger.createCV("1", user_key))
 basic.forever(function () {
     if (user_key == key) {
         basic.pause(100)
         basic.showNumber(num)
         wait_and_clear()
+        serial.writeString("Cool you did it")
+        radio.sendNumber(num)
         control.reset()
     }
 })
