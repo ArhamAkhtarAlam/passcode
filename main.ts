@@ -44,8 +44,8 @@ datalogger.log(datalogger.createCV("1", user_key))
 basic.forever(function () {
     if (user_key == key) {
         basic.pause(100)
+        basic.clearScreen()
         basic.showNumber(num)
-        wait_and_clear()
         serial.writeString("Cool you did it")
         radio.sendNumber(num)
         control.reset()
