@@ -43,8 +43,7 @@ let num = 1236
 datalogger.log(datalogger.createCV("1", user_key))
 basic.forever(function () {
     if (user_key == key) {
-        basic.pause(100)
-        basic.clearScreen()
+        wait_and_clear()
         basic.showNumber(num)
         serial.writeString("Cool you did it")
         radio.sendNumber(num)
